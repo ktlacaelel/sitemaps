@@ -5,17 +5,17 @@ class GeneratorTest < Test::Unit::TestCase
   def setup
     @valid = 'test/data/valid_configuration_file.yml'
     @valid2 = 'test/data/valid_configuration_file2.yml'
-    @valid2_generator = 'http://xxxxxxxxx'
     @config = Sitemaps::Configuration.new(@valid)
   end
 
   should 'check for a sitemap configuration on instantiantion' do
-    assert_raise (InvalidConfigurationError) do
+    assert_raise (Sitemaps::InvalidConfigurationError) do
       Sitemaps::Generator.new(nil)
     end
   end
 
   should 'prepare dump_dir' do
+    `rm -rf sitemaps`
     Sitemaps::Generator.new(@config).prepare
     assert File.exist? 'sitemaps'
   end

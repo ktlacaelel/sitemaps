@@ -1,2 +1,6 @@
-class InvalidConfigurationError < Exception
+module Sitemaps
+
+  class InvalidConfigurationError < Exception
+  end
+
 end
