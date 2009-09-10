@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "sitemaps"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{SEO Sitemap Generator}
+    gem.description = %Q{Setup a config file & execute. I will download and compress your sitemaps!}
     gem.email = "kazu.dev@gmail.com"
     gem.homepage = "http://github.com/ktlacaelel/sitemaps"
     gem.authors = ["kazuyoshi tlacaelel"]

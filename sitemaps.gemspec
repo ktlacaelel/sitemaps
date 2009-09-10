@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["kazuyoshi tlacaelel"]
   s.date = %q{2009-09-10}
-  s.description = %q{TODO: longer description of your gem}
+  s.description = %q{Setup a config file & execute. I will download and compress your sitemaps!}
   s.email = %q{kazu.dev@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "lib/sitemaps.rb",
+     "sitemaps.gemspec",
      "test/sitemaps_test.rb",
      "test/test_helper.rb"
   ]
@@ -30,7 +31,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.3}
-  s.summary = %q{TODO: one-line summary of your gem}
+  s.summary = %q{SEO Sitemap Generator}
   s.test_files = [
     "test/sitemaps_test.rb",
      "test/test_helper.rb"
