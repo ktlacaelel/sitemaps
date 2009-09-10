@@ -17,8 +17,8 @@ class ConfigurationTest < Test::Unit::TestCase
   # ============================================================================
 
   should 'check if configuration file exists' do
-    assert_raise { Sitemaps::Configuration.new('a') }
-    assert_raise { Sitemaps::Configuration.new(nil) }
+    assert_raise (InvalidConfigurationError) { Sitemaps::Configuration.new('a') }
+    assert_raise (InvalidConfigurationError) { Sitemaps::Configuration.new(nil) }
   end
 
   should 'load a configuration file' do
@@ -30,19 +30,19 @@ class ConfigurationTest < Test::Unit::TestCase
   # ============================================================================
 
   should 'throw an error when generator is not given' do
-    assert_raise { Sitemaps::Configuration.new(@no_generator) }
+    assert_raise (InvalidConfigurationError) { Sitemaps::Configuration.new(@no_generator) }
   end
 
   should 'throw an error when domain is not given' do
-    assert_raise { Sitemaps::Configuration.new(@no_domain) }
+    assert_raise (InvalidConfigurationError) { Sitemaps::Configuration.new(@no_domain) }
   end
 
   should 'throw an error when targets is not given' do
-    assert_raise { Sitemaps::Configuration.new(@no_targets) }
+    assert_raise (InvalidConfigurationError) { Sitemaps::Configuration.new(@no_targets) }
   end
 
   should 'throw an error when dump_dir is not given' do
-    assert_raise { Sitemaps::Configuration.new(@no_dump_dir) }
+    assert_raise (InvalidConfigurationError) { Sitemaps::Configuration.new(@no_dump_dir) }
   end
 
   # ============================================================================
@@ -66,7 +66,7 @@ class ConfigurationTest < Test::Unit::TestCase
   end
 
   should 'retrive dump_dir' do
-    assert_equal 'sitemaps', config.sitemaps
+    assert_equal 'sitemaps', config.dump_dir
   end
 
 end

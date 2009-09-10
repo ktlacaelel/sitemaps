@@ -7,5 +7,6 @@ require 'zlib'
 # internal libraries
 require 'cli'
 require 'configuration'
+require 'invalid_configuration_error'
 require 'generator'
 
