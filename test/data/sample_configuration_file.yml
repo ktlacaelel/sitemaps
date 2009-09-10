@@ -1,0 +1,16 @@
+
+configuration:
+
+  # machine that generates sitemaps in xml format
+  generator: http://localhost:3000
+
+  # domain from where the sitemaps will be available
+  domain: http://example.com
+
+  # path to sitemaps to be compiled
+  targets:
+    - /sitemap_for/users.xml
+
+  # directory where compressed maps will be placed
+  dump_dir: sitemaps
+
