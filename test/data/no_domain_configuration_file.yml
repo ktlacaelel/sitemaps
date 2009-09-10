@@ -1,0 +1,7 @@
+
+configuration:
+  generator: http://localhost:3000
+  targets:
+    - /sitemap_for/users.xml
+  dump_dir: sitemaps
+

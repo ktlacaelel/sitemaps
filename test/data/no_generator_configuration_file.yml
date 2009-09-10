@@ -1,0 +1,7 @@
+
+configuration:
+  domain: http://example.com
+  targets:
+    - /sitemap_for/users.xml
+  dump_dir: sitemaps
+

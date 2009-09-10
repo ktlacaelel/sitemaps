@@ -1,0 +1,6 @@
+
+configuration:
+  generator: http://localhost:3000
+  domain: http://example.com
+  dump_dir: sitemaps
+
