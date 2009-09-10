@@ -1,10 +1,11 @@
 
 # external libraries
-require 'zlib'
 require 'net/http'
+require 'yaml'
+require 'zlib'
 
 # internal libraries
-require 'generator'
-require 'configuration'
 require 'cli'
+require 'configuration'
+require 'generator'
 
