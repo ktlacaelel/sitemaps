@@ -4,6 +4,8 @@ class GeneratorTest < Test::Unit::TestCase
 
   def setup
     @valid = 'test/data/valid_configuration_file.yml'
+    @valid2 = 'test/data/valid_configuration_file2.yml'
+    @valid2_generator = 'http://xxxxxxxxx'
     @config = Sitemaps::Configuration.new(@valid)
   end
 
@@ -25,9 +27,9 @@ class GeneratorTest < Test::Unit::TestCase
 
   should 'change config' do
     generator = Sitemaps::Generator.new(@config)
-    @config.stub(:generator).returns('changed!')
-    generator.change_config @config
-    assert_equal generator.configuration.generator, 'changed!'
+    new_config = Sitemaps::Configuration.new(@valid2)
+    generator.configuration = new_config
+    assert_equal new_config, generator.configuration
   end
 
   should 'should download sitemaps'
