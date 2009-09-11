@@ -9,9 +9,11 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["kazuyoshi tlacaelel"]
-  s.date = %q{2009-09-10}
+  s.date = %q{2009-09-11}
+  s.default_executable = %q{sitemaps}
   s.description = %q{Setup a config file & execute. I will download and compress your sitemaps!}
   s.email = %q{kazu.dev@gmail.com}
+  s.executables = ["sitemaps"]
   s.extra_rdoc_files = [
     "LICENSE",
      "README.rdoc"
@@ -23,13 +25,11 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
-     "lib/cli.rb",
      "lib/configuration.rb",
      "lib/generator.rb",
      "lib/invalid_configuration_error.rb",
      "lib/sitemaps.rb",
      "sitemaps.gemspec",
-     "test/cli_test.rb",
      "test/configuration_test.rb",
      "test/data/empty_configuration_file.yml",
      "test/data/invalid_configuration_file.yml",
@@ -38,6 +38,7 @@ Gem::Specification.new do |s|
      "test/data/no_generator_configuration_file.yml",
      "test/data/no_targets_configuration_file.yml",
      "test/data/valid_configuration_file.yml",
+     "test/data/valid_configuration_file2.yml",
      "test/generator_test.rb",
      "test/test_helper.rb"
   ]
@@ -47,8 +48,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.3}
   s.summary = %q{SEO Sitemap Generator}
   s.test_files = [
-    "test/cli_test.rb",
-     "test/configuration_test.rb",
+    "test/configuration_test.rb",
      "test/generator_test.rb",
      "test/test_helper.rb"
   ]
