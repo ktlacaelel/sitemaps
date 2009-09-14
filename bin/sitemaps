@@ -1,0 +1,8 @@
+#!/usr/bin/ruby
+
+require 'rubygems'
+require 'sitemaps'
+
+configuration = Sitemaps::Configuration.new(ARGV[0])
+Sitemaps::Generator.new(configuration).execute!
+
