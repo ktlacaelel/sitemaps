@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "bin/sitemaps",
      "lib/configuration.rb",
      "lib/generator.rb",
      "lib/invalid_configuration_error.rb",
