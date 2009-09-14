@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{sitemaps}
-  s.version = "0.3.0"
+  s.version = "0.4.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["kazuyoshi tlacaelel"]
-  s.date = %q{2009-09-11}
+  s.date = %q{2009-09-14}
   s.default_executable = %q{sitemaps}
   s.description = %q{Setup a config file & execute. I will download and compress your sitemaps!}
   s.email = %q{kazu.dev@gmail.com}
