@@ -22,13 +22,54 @@ module Sitemaps
     def execute!
       download!
       compress!
+      compile!
     end
 
     protected
 
+    def compile!
+      compile_index
+      compile_robots
+    end
+
+    def compile_index
+      output = File.new(sitemaps_index_filename, 'w+')
+      xml = Builder::XmlMarkup.new(:target => output, :indent => 2)
+      xml.instruct! :version => '1.0', :encoding => 'UTF-8'
+      xml.sitemapindex :xmlns => 'http://www.sitemaps.org/schemas/sitemap/0.9' do
+        downloaded_maps.each do |map|
+          xml.sitemap do
+            xml.loc get_gzip_url(map)
+            xml.lastmod Time.now.strftime('%Y-%m-%d')
+          end
+        end
+      end
+      output.close
+      compress_file(sitemaps_index_filename, sitemaps_gziped_index_filename)
+    end
+
+    def compile_robots
+      File.open(robots_filename, 'w+') do |rostob|
+        rostob.puts 'Sitemap: %s/%s' % [@configuration.domain, sitemaps_gziped_index_filename]
+      end
+    end
+
+    def robots_filename
+      File.join(@configuration.dump_dir, 'robots.txt')
+    end
+
+    def sitemaps_index_filename
+      File.join(@configuration.dump_dir, 'index.xml')
+    end
+
+    def sitemaps_gziped_index_filename
+      File.join(@configuration.dump_dir, 'index.xml' + '.gz')
+    end
+
     def download!
       ensure_dump_dir
       Net::HTTP.start(@configuration.generator, '3000') do |http|
+        http.read_timeout = 999
         @configuration.targets.each do |target|
           store_downloaded_data target, http.get(target).body
         end
@@ -37,15 +78,27 @@ module Sitemaps
 
     def compress!
       ensure_compress_dir
-      Dir.glob(download_path + '/*').each do |file|
-        Zlib::GzipWriter.open(get_gzip_filename(file)) do |gz|
-          gz.write File.read(file)
-        end
-      end
+      downloaded_maps.each { |map| compress_file(map, get_gzip_filename(map)) }
+    end
+
+    def compress_file(source, target)
+      Zlib::GzipWriter.open(target) { |gz| gz.write File.read(source) }
+    end
+
+    def downloaded_maps
+      Dir.glob(download_path + '/*')
     end
 
     def get_gzip_filename(long_path)
       File.join(compress_path, File.basename(long_path) + '.gz')
+    end
+
+    def get_gzip_url(long_path)
+      [
+        @configuration.domain,
+        @configuration.dump_dir,
+        File.basename(long_path) + '.gz'
+      ].join('/')
     end
 
     def ensure_dump_dir

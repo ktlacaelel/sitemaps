@@ -3,6 +3,7 @@
 require 'net/http'
 require 'yaml'
 require 'zlib'
+require 'builder'
 
 # internal libraries
 require 'configuration'
