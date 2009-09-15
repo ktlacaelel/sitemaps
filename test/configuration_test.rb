@@ -29,19 +29,19 @@ class ConfigurationTest < Test::Unit::TestCase
   # MISSING PARAMETERS
   # ============================================================================
 
-  should 'throw an error when generator is not given' do
+  should 'raise an error when generator is not given' do
     assert_raise(Sitemaps::InvalidConfigurationError) { Sitemaps::Configuration.new(@no_generator) }
   end
 
-  should 'throw an error when domain is not given' do
+  should 'raise an error when domain is not given' do
     assert_raise(Sitemaps::InvalidConfigurationError) { Sitemaps::Configuration.new(@no_domain) }
   end
 
-  should 'throw an error when targets is not given' do
+  should 'raise an error when targets is not given' do
     assert_raise(Sitemaps::InvalidConfigurationError) { Sitemaps::Configuration.new(@no_targets) }
   end
 
-  should 'throw an error when dump_dir is not given' do
+  should 'raise an error when dump_dir is not given' do
     assert_raise(Sitemaps::InvalidConfigurationError) { Sitemaps::Configuration.new(@no_dump_dir) }
   end
 
@@ -54,7 +54,15 @@ class ConfigurationTest < Test::Unit::TestCase
   end
 
   should 'retrive generator' do
-    assert_equal 'http://localhost:3000', config.generator
+    assert_equal 'localhost', config.generator
+  end
+
+  should 'retrive generator port' do
+    assert_equal 3000, config.generator_port
+  end
+
+  should 'retrive ttl' do
+    assert_equal 999, config.generator_timeout
   end
 
   should 'retrive domain' do

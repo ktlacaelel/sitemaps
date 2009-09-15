@@ -1,6 +1,8 @@
 
 configuration:
-  generator: http://localhost:3000
+  generator: localhost
+  generator_timeout: 999
+  generator_port: 3000
   targets:
     - /sitemap_for/users.xml
   dump_dir: sitemaps

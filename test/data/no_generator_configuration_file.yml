@@ -1,6 +1,8 @@
 
 configuration:
   domain: http://example.com
+  generator_timeout: 999
+  generator_port: 3000
   targets:
     - /sitemap_for/users.xml
   dump_dir: sitemaps

@@ -1,6 +1,8 @@
 
 configuration:
   generator: http://localhost:3000
+  generator_timeout: 999
+  generator_port: 3000
   domain: http://example.com
   targets:
     - /sitemap_for/users.xml

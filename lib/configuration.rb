@@ -2,7 +2,7 @@ module Sitemaps
 
   class Configuration
 
-    attr_reader :generator, :domain, :targets, :dump_dir
+    attr_reader :generator, :domain, :targets, :dump_dir, :generator_port, :generator_timeout
 
     def initialize(yaml_file)
       @yaml_file = yaml_file
@@ -14,6 +14,8 @@ module Sitemaps
     def validate!
       validate_file!
       validate_generator!
+      validate_generator_port!
+      validate_generator_timeout!
       validate_domain!
       validate_dump_dir!
       validate_targets!
@@ -31,6 +33,26 @@ module Sitemaps
         raise InvalidConfigurationError.new('Incorrect yaml-syntax')
       end
       @configuration = @configuration['configuration']
+    end
+
+    def validate_generator_timeout!
+      unless @configuration.keys.include? 'generator_timeout'
+        raise InvalidConfigurationError.new('Missing generator timeout in config')
+      end
+      unless @configuration['generator_timeout'].is_a? Fixnum
+        raise InvalidConfigurationError.new('Please specify a generator timeout')
+      end
+      @generator_timeout = @configuration['generator_timeout']
+    end
+
+    def validate_generator_port!
+      unless @configuration.keys.include? 'generator_port'
+        raise InvalidConfigurationError.new('Missing generator port in config')
+      end
+      unless @configuration['generator_port'].is_a? Fixnum
+        raise InvalidConfigurationError.new('Please specify a generator port')
+      end
+      @generator_port = @configuration['generator_port']
     end
 
     def validate_generator!

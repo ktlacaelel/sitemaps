@@ -22,7 +22,7 @@ class GeneratorTest < Test::Unit::TestCase
 
   should 'get config' do
     config  = Sitemaps::Generator.new(@config).configuration
-    assert_equal config.generator, 'http://localhost:3000'
+    assert_equal config.generator, 'localhost'
   end
 
   should 'change config' do
