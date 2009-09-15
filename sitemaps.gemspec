@@ -5,13 +5,16 @@
 
 Gem::Specification.new do |s|
   s.name = %q{sitemaps}
-  s.version = "0.4.2"
+  s.version = "0.5.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["kazuyoshi tlacaelel"]
   s.date = %q{2009-09-15}
   s.default_executable = %q{sitemaps}
-  s.description = %q{Setup a config file & execute. I will download and compress your sitemaps!}
+  s.description = %q{
+    Sitemaps provides an executable that will take a configuration yaml file.
+    When runned it will download and gzip-compress your sitemaps ready for production!
+    }
   s.email = %q{kazu.dev@gmail.com}
   s.executables = ["sitemaps"]
   s.extra_rdoc_files = [
@@ -47,7 +50,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.3}
-  s.summary = %q{SEO Sitemap Generator}
+  s.summary = %q{Setup a config yaml file. I will download & compress your sitemaps!}
   s.test_files = [
     "test/configuration_test.rb",
      "test/generator_test.rb",
@@ -60,10 +63,13 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<thoughtbot-shoulda>, [">= 0"])
+      s.add_runtime_dependency(%q<builder>, [">= 2.1.2"])
     else
       s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
+      s.add_dependency(%q<builder>, [">= 2.1.2"])
     end
   else
     s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
+    s.add_dependency(%q<builder>, [">= 2.1.2"])
   end
 end
