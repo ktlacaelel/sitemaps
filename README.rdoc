@@ -1,9 +1,129 @@
-= sitemaps
+= Sitemaps
 
-Description goes here.
+Setup a config yaml file. I will download & compress your sitemaps!
+
+Sitemaps provides an executable that will take a configuration yaml file.
+When runned it will download and gzip-compress your sitemaps ready for production!
+
+Basically the idea is that you do not want your production server to
+compile the xml every single time, and on top of that you do not want
+to (gzip) your sitemap on the fly nor tell your web-server to do that
+for every single request.
+
+So we precompile, the sitemaps and compress them in a "generator"
+machine and store the static gziped-sitemaps on the webserver.
+
+Sitemaps provides a simple way to do this, put the name of your
+'generator-machine' and setup your production domain, subdirectories
+and sitemap-index (sitemap of sitemaps) will be dinamically generated
+for you. so all you have to do is execute and copy to your web-servers!
+
+a sample robots file is also generated for you, you can simply cat
+this and append it to your existing robots.txt file or simply use it
+as a reference if you are generating it dinamically.
+
+By Kazuyoshi Tlacaelel
+
+
+Run..
+  $ sitemaps config.yml
+
+Enjoy!
+  $ tree sitemaps
+  sitemaps
+  |-- downloads
+  |   `-- communities.xml
+  |-- index.xml
+  |-- index.xml.gz
+  |-- robots.txt
+  `-- sitemaps
+      `-- communities.xml.gz
+
+      2 directories, 5 files
+
+== Features
+
+* automatic generation of sitemap indexes ( a sitemap of sitemaps )
+
+  $ cat sitemaps/index.xml
+  <?version1.0encodingUTF-8?>
+  <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <sitemap>
+      <loc>http://example.com/sitemaps/communities.xml.gz</loc>
+      <lastmod>2009-09-15</lastmod>
+    </sitemap>
+  </sitemapindex>
+
+* sample robots.txt generation
+
+  Sitemap: http://example.com/sitemaps/index.xml.gz
+
+* download of sitemaps + compression
+
+  $ tree sitemaps
+  sitemaps
+  |-- downloads
+  |   `-- communities.xml
+  |-- index.xml
+  |-- index.xml.gz
+  |-- robots.txt
+  `-- sitemaps
+      `-- communities.xml.gz
+
+      2 directories, 5 files
+
+* The config file
+
+  configuration:
+
+    # Machine that generates your sitemaps
+    # do not prefix "http://" nor append the port
+    generator: localhost
+
+    # The http-port of your generator
+    generator_port: 3000
+
+    # The time to wait for each sitemap to be received
+    generator_timeout: 999
+
+    # Domain from where the sitemaps will be available.
+    # It is important that you do not append the last slash
+    # otherwise you may get an error message
+    #
+    # NG
+    # http://example.com/
+    #
+    # OK
+    # http://example.com
+    #
+    domain: http://example.com
+
+    # Path to sitemaps to be compiled on "generator".
+    # For example: if you have the following url
+    #
+    #   http://localhost:3000/sitemap_for/users.xml
+    #
+    # The target must be specified as such
+    #
+    # Note: you can have multiple targets
+    #
+    targets:
+      - /sitemap_for/users.xml
+
+    # Directory where compressed maps will be placed.
+    #
+    # Its a good idea to use a sub-path in your domain.
+    #
+    # For example:
+    # (your dump_dir could be sitemaps for the following url)
+    #
+    #   http://example.com/sitemaps
+    #
+    dump_dir: sitemaps
+
 
 == Note on Patches/Pull Requests
- 
+
 * Fork the project.
 * Make your feature addition or bug fix.
 * Add tests for it. This is important so I don't break it in a
