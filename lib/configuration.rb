@@ -62,7 +62,7 @@ module Sitemaps
       if @configuration['generator'].nil? || @configuration['generator'] == ''
         raise InvalidConfigurationError.new('Please specify a generator')
       end
-      if @configuration['generator'].is_a? String
+      unless @configuration['generator'].is_a? String
         raise InvalidConfigurationError.new('Generator is not a string')
       end
       if @configuration['generator'] =~ /^http/
