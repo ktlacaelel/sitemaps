@@ -7,6 +7,8 @@ class ConfigurationTest < Test::Unit::TestCase
     @invalid = 'test/data/invalid_configuration_file.yml'
     @empty = 'test/data/empty_configuration_file.yml'
     @no_generator = 'test/data/no_generator_configuration_file.yml'
+    @no_timeout   = 'test/data/no_timeout_configuration_file.yml'
+    @no_port      = 'test/data/no_port_configuration_file.yml'
     @no_domain    = 'test/data/no_domain_configuration_file.yml'
     @no_targets   = 'test/data/no_targets_configuration_file.yml'
     @no_dump_dir  = 'test/data/no_dump_dir_configuration_file.yml'
@@ -31,6 +33,14 @@ class ConfigurationTest < Test::Unit::TestCase
 
   should 'raise an error when generator is not given' do
     assert_raise(Sitemaps::InvalidConfigurationError) { Sitemaps::Configuration.new(@no_generator) }
+  end
+
+  should 'raise an error when generator port is not given' do
+    assert_raise(Sitemaps::InvalidConfigurationError) { Sitemaps::Configuration.new(@no_port) }
+  end
+
+  should 'raise an error when generator timeout is not given' do
+    assert_raise(Sitemaps::InvalidConfigurationError) { Sitemaps::Configuration.new(@no_timeout) }
   end
 
   should 'raise an error when domain is not given' do
