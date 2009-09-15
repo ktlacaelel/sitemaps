@@ -68,8 +68,8 @@ module Sitemaps
 
     def download!
       ensure_dump_dir
-      Net::HTTP.start(@configuration.generator, '3000') do |http|
-        http.read_timeout = 999
+      Net::HTTP.start(@configuration.generator, @configuration.generator_port) do |http|
+        http.read_timeout = @configuration.generator_timeout
         @configuration.targets.each do |target|
           store_downloaded_data target, http.get(target).body
         end
