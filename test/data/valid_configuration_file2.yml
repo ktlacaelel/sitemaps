@@ -2,7 +2,7 @@
 configuration:
 
   # machine that generates sitemaps in xml format
-  generator: http://xxxxxxxxx
+  generator: xxxxxxxxx
 
   generator_timeout: 999
   generator_port: 3000
