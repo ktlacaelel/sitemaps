@@ -11,6 +11,8 @@ class ConfigurationTest < Test::Unit::TestCase
     @no_port      = 'test/data/no_port_configuration_file.yml'
     @no_targets   = 'test/data/no_targets_configuration_file.yml'
     @no_timeout   = 'test/data/no_timeout_configuration_file.yml'
+    @gen_n_port   = 'test/data/generator_with_port_configuration_file.yml'
+    @gen_n_http   = 'test/data/generator_with_http_configuration_file.yml'
     @valid        = 'test/data/valid_configuration_file.yml'
   end
 
@@ -53,6 +55,22 @@ class ConfigurationTest < Test::Unit::TestCase
 
   should 'raise an error when dump_dir is not given' do
     assert_raise(Sitemaps::InvalidConfigurationError) { Sitemaps::Configuration.new(@no_dump_dir) }
+  end
+
+  # ============================================================================
+  # INVALID FORMAT
+  # ============================================================================
+
+  should 'raise an error when generator given has port' do
+    assert_raise(Sitemaps::InvalidConfigurationError) do
+      Sitemaps::Configuration.new(@gen_n_port)
+    end
+  end
+
+  should 'raise an error when generator given includes "http://" prefixed' do
+    assert_raise(Sitemaps::InvalidConfigurationError) do
+      Sitemaps::Configuration.new(@gen_n_http)
+    end
   end
 
   # ============================================================================
